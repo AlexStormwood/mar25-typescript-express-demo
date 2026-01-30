@@ -1,0 +1,27 @@
+name: CD - TypeScript Build Demo 
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install project dependencies
+        run: npm ci 
+
+      - name: Build the TS into JS 
+        run: npm run build 
+
+      - name: Confirm the build output 
+        run: |
+          ls 
+          ls ./dist/
+
+      - name: Placeholder of uploading the build output to somewhere
+        run: echo "Totally uploading output to EC2 or Action Artifacts"
